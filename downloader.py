@@ -68,17 +68,17 @@ class DownloaderApp(Frame):
         self.art_button = Button(self.frame3, text="Choose Album Art", command=self.getArt).grid(row=3,column=0)
         self.art_label = Label(self.frame3, textvariable=self.art_text).grid(row=3,column=1)
 
-        # download button widget
-        self.download_button = Button(self.frame2, text="Download", command=self.download)
-        self.download_button.pack(padx=5, pady=3)
-
         # padding around each user input widget
         for child in self.frame3.winfo_children():
             child.grid_configure(padx=5, pady=3)
 
-        # status bar widget
+        # status bar widget; added before download to sticky to bottom first
         self.statusbar = Label(self.frame1, textvariable=self.message, bd=1, relief="sunken", anchor="w")
         self.statusbar.pack(side="bottom", fill="x")
+        
+        # download button widget
+        self.download_button = Button(self.frame2, text="Download", command=self.download)
+        self.download_button.pack(side="bottom", padx=5, pady=3)
 
         self.master.bind('<Return>', self.download)
         self.master.config(menu=self.menu)
